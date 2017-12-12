@@ -31,6 +31,9 @@ class coord
 
     coord operator--();
     coord operator--(int notused);
+
+    coord operator<<(int n);
+    coord operator>>(int n);
 };
 
 coord coord:: operator+(coord ob2)
@@ -142,6 +145,22 @@ coord coord::operator--(int notused)
     return *this;
 }
 
+coord coord::operator<<(int n)
+{
+    coord temp;
+    temp.x = x<<n;
+    temp.y = y<<n;
+    return temp;
+}
+
+coord coord::operator>>(int n)
+{
+    coord temp;
+    temp.x = x>>n;
+    temp.y = y>>n;
+    return temp;
+}
+
 int main()
 {
     coord o1(10,10), o2(5,3), o3;
@@ -206,13 +225,25 @@ int main()
     else
        cout << "o1 > o5 is false\n";
 
+    cout << "++o1: ";
     (++o1).print();
+    cout << "o1++: ";
     (o1++).print();
 
+    cout << "--o2: ";
     (--o2).print();
+    cout << "o2--: ";
     (o2--).print();
 
+    cout << "-o1: ";
     (-o1).print();
+    cout << "+o1: ";
     (+o1).print();
+
+    cout << "o1<<3: ";
+    (o1<<3).print();
+    cout << "o1>>2: ";
+    (o1>>2).print();
+    
     return 0;
 }   
